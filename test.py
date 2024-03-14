@@ -1,5 +1,3 @@
-from PIL import Image
-
 import streamlit as st
 import tempfile
 import os
@@ -29,11 +27,6 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-
-# Load and display the logo
-# image = Image.open("lyzr-logo.png")
-# st.image(image, width=150)
-
 # App title and introduction
 st.title("Lyzr Educational Bot")
 st.markdown("### Welcome to the Lyzr Educational Bot!")
@@ -41,14 +34,6 @@ st.markdown("Upload Your Educational PDFs and Ask your queries.")
 
 # Instruction for the users
 st.markdown("#### 📄 Upload a Pdf")
-
-# Input for API key
-# api_key = st.sidebar.text_input("API Key", type="password")
-# if api_key:
-#     os.environ["OPENAI_API_KEY"] = api_key
-# else:
-#     # Prompt for API key if not provided
-#     st.sidebar.warning("Please enter your API key to proceed.")
 
 uploaded_files = st.file_uploader(
     "Choose PDF files", type=["pdf"], accept_multiple_files=True
@@ -73,6 +58,7 @@ if uploaded_files:
 
     # Inform the user that the files have been uploaded and processed
     st.success("PDFs uploaded and processed. You can now interact with the chatbot.")
+
 
 
 if "messages" not in st.session_state:
@@ -100,23 +86,23 @@ else:
     st.warning("Please upload PDF files to continue.")
 
 
-# Footer or any additional information
-with st.expander("ℹ️ - About this App"):
-    st.markdown(
+    # Footer or any additional information
+    with st.expander("ℹ️ - About this App"):
+        st.markdown(
+            """
+        This app uses Lyzr Core to generate notes from transcribed audio. The audio transcription is powered by OpenAI's Whisper model. For any inquiries or issues, please contact Lyzr.
+    
         """
-    This app uses Lyzr Core to generate notes from transcribed audio. The audio transcription is powered by OpenAI's Whisper model. For any inquiries or issues, please contact Lyzr.
-
-    """
-    )
-    st.link_button("Lyzr", url="https://www.lyzr.ai/", use_container_width=True)
-    st.link_button(
-        "Book a Demo", url="https://www.lyzr.ai/book-demo/", use_container_width=True
-    )
-    st.link_button(
-        "Discord", url="https://discord.gg/nm7zSyEFA2", use_container_width=True
-    )
-    st.link_button(
-        "Slack",
-        url="https://join.slack.com/t/genaiforenterprise/shared_invite/zt-2a7fr38f7-_QDOY1W1WSlSiYNAEncLGw",
-        use_container_width=True,
-    )
+        )
+        st.link_button("Lyzr", url="https://www.lyzr.ai/", use_container_width=True)
+        st.link_button(
+            "Book a Demo", url="https://www.lyzr.ai/book-demo/", use_container_width=True
+        )
+        st.link_button(
+            "Discord", url="https://discord.gg/nm7zSyEFA2", use_container_width=True
+        )
+        st.link_button(
+            "Slack",
+            url="https://join.slack.com/t/genaiforenterprise/shared_invite/zt-2a7fr38f7-_QDOY1W1WSlSiYNAEncLGw",
+            use_container_width=True,
+        )
